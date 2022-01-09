@@ -1,0 +1,2 @@
+# beautiful-pyems
+Eu sei que a gente se acostuma. Mas não devia.  A gente se acostuma a morar em apartamento de fundos e a não ter outra vista que não seja as janelas ... Beautiful Pyems é uma micro API em Flask que todos os dias retorna um poema diferente. Esses poemas podem ser usados nas mais diversas aplicações e funcionalidades, o intuito da API é disseminar a poesia que eu considero um remédio para alma dos homens.
