@@ -32,35 +32,6 @@ def get_random_poem_from_author(author):
         }}), 404
 
 
-@blueprint.route('/authors/<author>/<int:quantity>')
-def get_poems_from_author(author, quantity):
-    dict_to_return = {}
-    author = re.compile(f"^{author}", re.IGNORECASE)
-
-    poems = list(mongo.db.poems.aggregate([
-        {"$match": {"author": author}},
-        {
-            "$sample": {"size": quantity}
-        }
-    ]))
-
-    for i in range(len(poems)):
-        dict_to_return[i] = {
-            "title": poems[i]["title"],
-            "author": poems[i]["author"],
-            "content": poems[i]["content"]
-        }
-
-    if dict_to_return:
-        return jsonify(dict_to_return), 200
-    else:
-        return jsonify({"error": {
-            "message": "Poem or author not found.",
-            "type": "NotFoundError",
-            "code": 404,
-        }}), 404
-
-
 @blueprint.route('/authors/<author>/<name>')
 def get_poem_from_author(author, name):
     author = re.compile(f"^{author}", re.IGNORECASE)
@@ -84,6 +55,35 @@ def get_poem_from_author(author, name):
             "author": poem[0]["author"],
             "content": poem[0]["content"]
         }), 200
+    else:
+        return jsonify({"error": {
+            "message": "Poem or author not found.",
+            "type": "NotFoundError",
+            "code": 404,
+        }}), 404
+
+
+@blueprint.route('/authors/<author>/<int:quantity>')
+def get_poems_from_author(author, quantity):
+    dict_to_return = {}
+    author = re.compile(f"^{author}", re.IGNORECASE)
+
+    poems = list(mongo.db.poems.aggregate([
+        {"$match": {"author": author}},
+        {
+            "$sample": {"size": quantity}
+        }
+    ]))
+
+    for i in range(len(poems)):
+        dict_to_return[i] = {
+            "title": poems[i]["title"],
+            "author": poems[i]["author"],
+            "content": poems[i]["content"]
+        }
+
+    if dict_to_return:
+        return jsonify(dict_to_return), 200
     else:
         return jsonify({"error": {
             "message": "Poem or author not found.",
