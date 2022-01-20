@@ -1,10 +1,10 @@
 from flask import Blueprint, jsonify
 from ..database import *
 
-blueprint = Blueprint('blueprint', __name__)
+blueprint = Blueprint('random', __name__)
 
 
-@blueprint.route('/random')
+@blueprint.route('/')
 def get_random_poem():
     poem = list(mongo.db.poems.aggregate([
         {

@@ -1,17 +1,18 @@
 from flask import Flask
-
 from .database import mongo
-from .views.random_poem import blueprint as random
+from .config import DevConfig
+from .views.random_poem import blueprint as randomPoem
+from .views.author import blueprint as author
 
 # Instanciando a aplicação Flask
 app = Flask(__name__)
 
 # Configurações do Flask
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/flask'
-app.config['JSON_SORT_KEYS'] = False
+app.config.from_object(DevConfig)
 
 # MongoDB
 mongo.init_app(app)
 
 # Importações das BluePrints
-app.register_blueprint(random)
+app.register_blueprint(randomPoem)
+app.register_blueprint(author)
