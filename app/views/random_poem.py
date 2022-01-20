@@ -1,8 +1,19 @@
-import pymongo
 from flask import Blueprint, jsonify
+from ..database import *
 
-random_poem = Blueprint('random_poem', __name__)
+blueprint = Blueprint('blueprint', __name__)
 
-@random_poem.route('/random')
-def random_poem():
-    pass
+
+@blueprint.route('/random')
+def get_random_poem():
+    poem = list(mongo.db.poems.aggregate([
+        {
+            "$sample": {"size": 1}
+        }
+    ]))
+
+    return jsonify({
+        "title": poem[0]["title"],
+        "author": poem[0]["author"],
+        "content": poem[0]["content"]
+    }), 200
