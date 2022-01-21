@@ -4,6 +4,7 @@ from .config import DevConfig
 from .routes.random import blueprint as random
 from .routes.author import blueprint as author
 
+
 # Instanciando a aplicação Flask
 app = Flask(__name__)
 
