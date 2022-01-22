@@ -23,7 +23,7 @@ class ProdConfig(Config):
 
 class DevConfig(Config):
     FLASK_ENV = 'development'
-    MONGO_URI = 'mongodb://localhost:27017/flask'
+    MONGO_URI = 'mongodb+srv://rodrigo:siliunas@cluster0.xlmzh.mongodb.net/flask'
     TESTING = True
     DEBUG = True
 
