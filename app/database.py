@@ -1,5 +1,4 @@
 from flask_pymongo import PyMongo
-from .config import ProdConfig
 
 """
     Observação:
@@ -8,4 +7,4 @@ from .config import ProdConfig
         não vai funcionar, acredite.
 """
 
-mongo = PyMongo(uri=ProdConfig.MONGO_URI)
+mongo = PyMongo()
