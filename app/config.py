@@ -1,5 +1,5 @@
 
-from flask_restx import Api
+from flask_restx import Api, cors
 from distutils.debug import DEBUG
 from .routes.author import api as authors
 from .routes.random import api as randoms
@@ -36,7 +36,8 @@ api = Api(
     contact_email="rodrigo.siliunas98@outlook.com",
     contact_url="https://github.com/RodrigoSiliunas/beautiful-pyems",
 
-    doc="/docs"
+    doc="/docs",
+    decorators=[cors.crossdomain(origin="*")]
 )
 
 api.add_namespace(authors)
