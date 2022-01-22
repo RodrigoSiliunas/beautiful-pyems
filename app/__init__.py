@@ -1,4 +1,5 @@
 from flask import Flask
+
 from .database import mongo
 from .config import DevConfig, api
 
