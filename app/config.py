@@ -3,6 +3,7 @@ from flask_restx import Api
 from distutils.debug import DEBUG
 from .routes.author import api as authors
 from .routes.random import api as randoms
+from .routes.poem import api as poems
 
 # Área de configuração da aplicação;
 
@@ -40,3 +41,4 @@ api = Api(
 
 api.add_namespace(authors)
 api.add_namespace(randoms)
+api.add_namespace(poems)

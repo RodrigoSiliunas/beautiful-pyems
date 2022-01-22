@@ -81,4 +81,4 @@ class GetRandomPoems(Resource):
                     "retryAfter": "60m"
             }}, 503
 
-        return { poems_to_return }, 200
+        return poems_to_return, 200

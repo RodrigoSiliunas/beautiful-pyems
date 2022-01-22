@@ -16,40 +16,38 @@ api.add_model('Poem', PoemModel)
 api.add_model('Error', ErrorModel)
 
 
-@api.route('/poems/<poem>', doc={
+@api.route('/<title>', doc={
     'params': {
-        'poem': 'Name of the poem to be returned.'
+        'title': 'Title of the poem to be returned.'
     },
     'description': 'Returns a poem by name if it is registered in the database.'
 })
 class GetPoemByName(Resource):
     @api.response(200, 'Success. Your request was accepted and a JSON with the format specified below was returned.', PoemModel)
     @api.response(404, 'Request failed. Poem not found.', ErrorModel)
-    def gef(self, name):
+    def get(self, title):
         '''If exists return a poem by name.'''
-        name = re.compile(f"^{name}", re.IGNORECASE)
+        name = re.compile(f"^{title}", re.IGNORECASE)
 
         try:
             poem = list(mongo.db.poems.aggregate([
                 {
-                    "$match": {"name": name}
+                    "$match": {"title": name}
                 },
                 {
                     "$sample": {"size": 1}
                 }
             ]))
-
-
-            return {
-                "title": poem[0]["title"],
-                "author": poem[0]["author"],
-                "content": poem[0]["content"]
-            }, 200
         except:
             return {
                 "error": {
-                    "message": "Something have wrong with us.",
-                    "type": "ServerError",
-                    "code": 503,
-                    "retryAfter": "60m"
-                }}, 503
+                    "message": "Poem not found.",
+                    "type": "NotFoundError",
+                    "code": 404
+                }}, 404
+
+        return {
+            "title": poem[0]["title"],
+            "author": poem[0]["author"],
+            "content": poem[0]["content"]
+        }, 200
