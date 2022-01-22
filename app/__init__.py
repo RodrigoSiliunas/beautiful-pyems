@@ -14,7 +14,7 @@ app = Flask(__name__)
 app.config.from_object(DevConfig)
 
 # Instanciando o MongoDB com a nossa aplicação.
-mongo.init_app(app, uri='mongodb+srv://rodrigo:siliunas@cluster0.xlmzh.mongodb.net/flask')
+mongo.init_app(app)
 
 # Importações dos BluePrints
 app.register_blueprint(random)
