@@ -1,7 +1,7 @@
 from flask import Flask
 
 from .database import mongo
-from .config import ProdConfig, api
+from .config import DevConfig, api
 
 from .routes.author import blueprint as author
 from .routes.random import blueprint as random
@@ -11,7 +11,7 @@ from .routes.poem import blueprint as poem
 app = Flask(__name__)
 
 # Configurações do Flask
-app.config.from_object(ProdConfig)
+app.config.from_object(DevConfig)
 
 # Instanciando o MongoDB com a nossa aplicação.
 mongo.init_app(app, uri='mongodb+srv://rodrigo:siliunas@cluster0.xlmzh.mongodb.net/flask')
