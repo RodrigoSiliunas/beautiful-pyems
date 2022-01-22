@@ -21,5 +21,9 @@ app.register_blueprint(random)
 app.register_blueprint(author)
 app.register_blueprint(poem)
 
+@app.route('/')
+def index():
+    return 'Hello World!'
+
 # Instanciando as configurações do APP com a API
 api.init_app(app)
