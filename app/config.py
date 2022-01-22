@@ -16,7 +16,7 @@ class Config:
 
 class ProdConfig(Config):
     FLASK_ENV = 'production'
-    MONGO_URI = os.environ.get('MONGO_URI')
+    MONGO_URI = str(os.environ.get('MONGODB_URL'))
     DEBUG = False
     TESTING = False
 
