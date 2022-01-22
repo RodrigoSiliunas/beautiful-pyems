@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 
 from .database import mongo
 from .config import DevConfig, ProdConfig, api
@@ -24,7 +24,9 @@ app.register_blueprint(poem)
 
 @app.route('/')
 def index():
-    return 'Hello World!'
+    return jsonify({
+        'Hello': 'World!'
+    }), 200
 
 # Instanciando as configurações do APP com a API
 api.init_app(app)

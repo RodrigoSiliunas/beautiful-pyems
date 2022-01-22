@@ -38,8 +38,7 @@ api = Api(
     contact_email="rodrigo.siliunas98@outlook.com",
     contact_url="https://github.com/RodrigoSiliunas/beautiful-pyems",
 
-    doc="/docs",
-    decorators=[cors.crossdomain(origin="*")]
+    doc="/docs"
 )
 
 api.add_namespace(authors)
