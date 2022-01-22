@@ -1,4 +1,5 @@
 
+import os
 from flask_restx import Api, cors
 from distutils.debug import DEBUG
 from .routes.author import api as authors
@@ -15,6 +16,7 @@ class Config:
 
 class ProdConfig(Config):
     FLASK_ENV = 'production'
+    MONGO_URI = os.environ.get('MONGO_URI')
     DEBUG = False
     TESTING = False
 
