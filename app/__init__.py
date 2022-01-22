@@ -12,7 +12,7 @@ app = Flask(__name__)
 # Configurações do Flask
 app.config.from_object(DevConfig)
 
-# MongoDB
+# Instanciando o MongoDB com a nossa aplicação.
 mongo.init_app(app)
 
 # Importações dos BluePrints
