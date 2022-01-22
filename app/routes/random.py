@@ -1,12 +1,12 @@
-from flask_restx import Resource, Namespace
-from flask import Blueprint
 from ..database import *
+from flask import Blueprint
+from flask_restx import Resource, Namespace
 
 from ..models.poem.PoemModel import model as PoemModel
 from ..models.error.ErrorModel import error_model as ErrorModel
 from ..models.error.AuthorNotFoundModel import author_not_found_model as AuthorNotFoundModel
 
-blueprint = Blueprint('random', __name__)
+blueprint = Blueprint('randoms', __name__)
 api = Namespace(
     name='randoms', description='Routes to obtain poems by random authors.')
 
@@ -47,6 +47,9 @@ class GetRandomPoem(Resource):
 
 
 @api.route('/<int:quantity>', doc={
+    'params': {
+        'quantity': 'Number of poems to be returned.'
+    },
     'description': 'A random poem by an author who is previously registered in our database is returned through a GET request at this URL.'
 })
 class GetRandomPoems(Resource):
