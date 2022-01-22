@@ -16,14 +16,14 @@ class Config:
 
 class ProdConfig(Config):
     FLASK_ENV = 'production'
-    MONGO_URI = str(os.environ.get('MONGODB_URL'))
+    MONGO_URI = str(os.environ.get('MONGO_URI', None))
     DEBUG = False
     TESTING = False
 
 
 class DevConfig(Config):
     FLASK_ENV = 'development'
-    MONGO_URI = 'mongodb+srv://rodrigo:siliunas@cluster0.xlmzh.mongodb.net/flask'
+    MONGO_URI = 'mongodb://localhost:27017/flask'
     TESTING = True
     DEBUG = True
 
