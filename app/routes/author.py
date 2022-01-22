@@ -2,7 +2,7 @@
 import re
 from ..database import *
 from flask import Blueprint
-from flask_restx import Resource, Namespace
+from flask_restx import Resource, Namespace, cors
 
 from ..models.poem.PoemModel import model as PoemModel
 from ..models.error.ErrorModel import error_model as ErrorModel
@@ -10,7 +10,8 @@ from ..models.error.AuthorNotFoundModel import author_not_found_model as AuthorN
 
 
 blueprint = Blueprint('authors', __name__)
-api = Namespace('authors', 'Routes for author requests.')
+api = Namespace('authors', 'Routes for author requests.',
+                decorators=[cors.crossdomain(origin="*")])
 
 # Registro dos modelos;
 api.add_model('Poem', PoemModel)

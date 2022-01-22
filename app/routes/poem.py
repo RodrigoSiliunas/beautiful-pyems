@@ -1,7 +1,7 @@
 import re
 from ..database import *
 from flask import Blueprint
-from flask_restx import Resource, Namespace
+from flask_restx import Resource, Namespace, cors
 
 from ..models.poem.PoemModel import model as PoemModel
 from ..models.error.ErrorModel import error_model as ErrorModel
@@ -9,7 +9,8 @@ from ..models.error.ErrorModel import error_model as ErrorModel
 
 blueprint = Blueprint('poems', __name__)
 api = Namespace(
-    name='poems', description='Route to get poems by name without needing to inform the author.')
+    name='poems', description='Route to get poems by name without needing to inform the author.',
+    decorators=[cors.crossdomain(origin="*")])
 
 # Registro dos modelos;
 api.add_model('Poem', PoemModel)

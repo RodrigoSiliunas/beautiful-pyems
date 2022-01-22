@@ -1,6 +1,6 @@
 from ..database import *
 from flask import Blueprint
-from flask_restx import Resource, Namespace
+from flask_restx import Resource, Namespace, cors
 
 from ..models.poem.PoemModel import model as PoemModel
 from ..models.error.ErrorModel import error_model as ErrorModel
@@ -8,7 +8,8 @@ from ..models.error.AuthorNotFoundModel import author_not_found_model as AuthorN
 
 blueprint = Blueprint('randoms', __name__)
 api = Namespace(
-    name='randoms', description='Routes to obtain poems by random authors.')
+    name='randoms', description='Routes to obtain poems by random authors.',
+    decorators=[cors.crossdomain(origin="*")])
 
 # Registrando os modelos desse NameSpace;
 api.add_model('Poem', PoemModel)
@@ -37,7 +38,7 @@ class GetRandomPoem(Resource):
                     "type": "ServerError",
                     "code": 503,
                     "retryAfter": "60m"
-            }}, 503
+                }}, 503
 
         return {
             "title": poem[0]["title"],
@@ -79,6 +80,6 @@ class GetRandomPoems(Resource):
                     "type": "ServerError",
                     "code": 503,
                     "retryAfter": "60m"
-            }}, 503
+                }}, 503
 
         return poems_to_return, 200
