@@ -10,7 +10,7 @@ from .routes.poem import blueprint as poem
 
 # Instanciando a aplicação Flask
 app = Flask(__name__)
-app.config['MONGO_URI'] = 'mongodb+srv://rodrigo:siliunas@cluster0.xlmzh.mongodb.net/flask'
+app.config["MONGO_URI"] = 'mongodb+srv://rodrigo:siliunas@cluster0.xlmzh.mongodb.net/flask'
 
 # Configurações do Flask
 app.config.from_object(ProdConfig)
