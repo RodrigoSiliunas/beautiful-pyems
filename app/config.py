@@ -11,11 +11,12 @@ from .routes.poem import api as poems
 
 class Config:
     JSON_SORT_KEYS = False
-    THREADED = True
+    THREADED = False
 
 
 class ProdConfig(Config):
     FLASK_ENV = 'production'
+    MONGO_URI = 'mongodb+srv://rodrigo:siliunas@cluster0.xlmzh.mongodb.net/flask'
     DEBUG = False
     TESTING = False
 

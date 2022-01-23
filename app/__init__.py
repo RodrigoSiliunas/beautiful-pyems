@@ -1,16 +1,12 @@
-import os
 from flask import Flask, jsonify
-
 from .database import mongo
-from .config import DevConfig, ProdConfig, api
-
+from .config import ProdConfig, api
 from .routes.author import blueprint as author
 from .routes.random import blueprint as random
 from .routes.poem import blueprint as poem
 
 # Instanciando a aplicação Flask
 app = Flask(__name__)
-app.config["MONGO_URI"] = 'mongodb+srv://rodrigo:siliunas@cluster0.xlmzh.mongodb.net/flask'
 
 # Configurações do Flask
 app.config.from_object(ProdConfig)
@@ -23,14 +19,14 @@ app.register_blueprint(random)
 app.register_blueprint(author)
 app.register_blueprint(poem)
 
+
 @app.route('/')
 def index():
-    poema = mongo.db.poems.find_one()
 
     return jsonify({
-        'Hello': 'World!',
-        'oxe': poema['title']
+        'Hello': 'World!'
     }), 200
+
 
 # Instanciando as configurações do APP com a API
 api.init_app(app)
