@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, redirect
 from .database import mongo
 from .config import ProdConfig, api
 from .routes.author import blueprint as author
@@ -22,10 +22,7 @@ app.register_blueprint(poem)
 
 @app.route('/')
 def index():
-
-    return jsonify({
-        'Hello': 'World!'
-    }), 200
+    return redirect('/docs', 302)
 
 
 # Instanciando as configurações do APP com a API
