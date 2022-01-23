@@ -54,3 +54,7 @@ Durante essa caminhada espero que eu inspire outros desenvolvedores, enriqueça 
 Conceitos importantes estão sendo aprendidos e relembrados ao decorrer da minha jornada para a criação dessa aplicação.
 
 De qualquer tempoespaço em que você leitor estiver, desejo profundo sucesso e boa sorte na vida. Obrigado por ler até aqui e se eu puder ajudar em alguma coisa me procure nas minhas [redes sociais](https://www.instagram.com/rosiliunas/). ✨🎉  🖖😉✌  ✨🎉
+
+### API Online
+
+Caso você queira fazer requisições nessa API você é livre para isso. A API está atualmente online em `http://beautiful-pyems.herokuapp.com`. ✌ 😍 ❤
