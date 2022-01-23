@@ -29,23 +29,23 @@ class RandomPoemFromAuthor(Resource):
     @api.response(404, 'Request failed. The author was not found in our database. A JSON with the error information was returned.', AuthorNotFoundModel)
     def get(self, author):
         '''Returns a random poem by a given author.'''
-        author = re.compile(f"^{author}", re.IGNORECASE)
+        # author = re.compile(f"^{author}", re.IGNORECASE)
 
-        poem = list(mongo.db.poems.aggregate([
-            {
-                "$match": {"author": author}
-            },
-            {
-                "$sample": {"size": 1}
-            }
-        ]))
+        # poem = list(mongo.db.poems.aggregate([
+        #     {
+        #         "$match": {"author": author}
+        #     },
+        #     {
+        #         "$sample": {"size": 1}
+        #     }
+        # ]))
 
-        if poem:
-            return {
-                "title": poem[0]["title"],
-                "author": poem[0]["author"],
-                "content": poem[0]["content"]
-            }, 200
+        # if poem:
+        #     return {
+        #         "title": poem[0]["title"],
+        #         "author": poem[0]["author"],
+        #         "content": poem[0]["content"]
+        #     }, 200
 
         return {
             "error": {
